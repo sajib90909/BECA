@@ -1,0 +1,60 @@
+*{
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}
+.login-body{
+	height: 100%;
+}
+.login-card{
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login-card-cont{
+    width: 390px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+}
+.userlink a{
+  text-decoration: none;
+  list-style: none;
+}
+.round{
+	border-radius: 70px;
+}
+.members_table_image{
+    width: 50px;
+    height:50px;
+    padding: 2px;
+    border: 1px solid #858796;
+    background: #dbdbdb;
+}
+.user_img{
+    width: 120px;
+    height: 140px;
+    float: left;
+}
+.details-show td{
+    padding: 2px;
+}
+.image-logo{
+    width: 200px;
+    height: 200px;
+}
+/*-----------model-first-login----------*/
+.first-login-model{
+    z-index:0;
+}
