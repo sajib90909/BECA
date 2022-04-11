@@ -3,9 +3,9 @@
 class smsSend
 {
     public static function send_sms($to,$msg) {
-        $url = "http://bulk.fmsms.biz/smsapi";
+        $url = env('SMS_API_URL', '');
         $data = [
-            "api_key" => env('SMS_API_KEY'),
+            "api_key" => env('SMS_API_KEY', ''),
             "type" => "text",
             "contacts" => $to,
             "senderid" => "8801847169884",
