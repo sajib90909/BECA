@@ -9,7 +9,7 @@ class smsSend
             "type" => "text",
             "contacts" => $to,
             "senderid" => "8801847169884",
-            "msg" => $msg,
+            "msg" => urlencode($msg),
           ];
         $response = 'not_approve';
         if(env('SMS_PERMISSION') == 1){

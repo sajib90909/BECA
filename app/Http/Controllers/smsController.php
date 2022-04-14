@@ -10,6 +10,7 @@ use App\User;
 use App\UserAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use smsSend;
 
 class smsController extends Controller
@@ -32,6 +33,7 @@ class smsController extends Controller
             $sms_data->content = $content;
         }
         $response = smsSend::send_sms($send_to,$content);
+
         $sms_data->send_by = $send_by;
         $sms_data->send_to = $send_to;
         $sms_data->send_from = 0;
@@ -55,6 +57,14 @@ class smsController extends Controller
             $response_msg = 'Invalid User & Password';
         }elseif($response == 1011){
             $response_msg = 'Invalid User Id';
+        }elseif($response == 1012){
+            $response_msg = 'Invalid Number';
+        }elseif($response == 1013){
+            $response_msg = 'API limit error';
+        }elseif($response == 1014){
+            $response_msg = 'No matching template';
+        }elseif($response == 1015){
+            $response_msg = 'SMS Content Validation Fails';
         }else{
             $response_msg = $response;
             $sms_data->status = 1;
@@ -194,7 +204,7 @@ class smsController extends Controller
             return redirect('/admin_panel/login');
         }
         $api = env('SMS_API_KEY');
-        $url_data = file_get_contents('http://bulk.fmsms.biz/miscapi/'.$api.'/getBalance');
+        $url_data = Http::get('http://bulk.fmsms.biz/miscapi/'.$api.'/getBalance');
         $balance_slice = explode(' ', $url_data);
         $balance = array_pop($balance_slice);
         $cost = 0.22;

@@ -66,6 +66,14 @@ class membersAuthAction extends Controller
             $response_msg = 'Invalid User & Password';
         }elseif($response == 1011){
             $response_msg = 'Invalid User Id';
+        }elseif($response == 1012){
+            $response_msg = 'Invalid Number';
+        }elseif($response == 1013){
+            $response_msg = 'API limit error';
+        }elseif($response == 1014){
+            $response_msg = 'No matching template';
+        }elseif($response == 1015){
+            $response_msg = 'SMS Content Validation Fails';
         }else{
             $response_msg = $response;
             $sms_data->status = 1;
@@ -101,7 +109,7 @@ class membersAuthAction extends Controller
 //        $otp_code = 12345;
         $otp_code_encrypt = Crypt::encrypt($otp_code);
         $password = Crypt::encrypt($request->password);
-        $msg = 'BECA (Bangladesh Ex-Cadet Association) send you a verification code '.$otp_code;
+        $msg = 'বাংলাদেশ এক্স-ক্যাডেটস এসোসিয়েশন (বেকা) আপনাকে ভেরিফিকেসন কোড পাঠিয়েছে- '.$otp_code;
 //        smsSend::send_sms($request->phone,$msg);
         $this->sendSms($msg,0,$request->phone);
         return redirect()->route('/user_panel/members/phone-verify/',['name'=>$request->name,'phone'=>$request->phone,'otp'=>$otp_code_encrypt,'password'=>$password,'current_unite'=>$request->current_unite]);
@@ -303,7 +311,7 @@ class membersAuthAction extends Controller
         $reset_pass->user_id = $data->id;
         $reset_pass->phone = $data->phone;
         $reset_pass->token = Hash::make($token);
-        $msg = 'BECA (Bangladesh Ex-Cadet Association) send you a Password Reset verification code '.$token;
+        $msg = 'বাংলাদেশ এক্স-ক্যাডেটস এসোসিয়েশন (বেকা) আপনাকে ভেরিফিকেসন কোড পাঠিয়েছে- '.$token;
 //        smsSend::send_sms($data->phone,$msg);
         $this->sendSms($msg,0,$data->phone);
         $action = 'phone_verify';

@@ -86,7 +86,7 @@ class adminDashboardController extends Controller
             $active_logs_admins = DB::table('active_log_admins')
                 ->join('users as admin','admin.id','=','active_log_admins.action_admin_id')
                 ->where('admin.user_type','!=','author')
-                ->select('admin.name as admin_name','active_log_admins.action_admin_id')
+                ->select('admin.name as admin_name','active_log_admins.id','active_log_admins.action_admin_id')
                 ->orderBy('active_log_admins.id', 'DESC')
                 ->distinct('active_log_admins.action_admin_id')
                 ->get();

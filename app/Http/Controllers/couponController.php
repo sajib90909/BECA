@@ -55,6 +55,14 @@ class couponController extends Controller
             $response_msg = 'Invalid User & Password';
         }elseif($response == 1011){
             $response_msg = 'Invalid User Id';
+        }elseif($response == 1012){
+            $response_msg = 'Invalid Number';
+        }elseif($response == 1013){
+            $response_msg = 'API limit error';
+        }elseif($response == 1014){
+            $response_msg = 'No matching template';
+        }elseif($response == 1015){
+            $response_msg = 'SMS Content Validation Fails';
         }else{
             $response_msg = $response;
             $sms_data->status = 1;
@@ -192,7 +200,7 @@ class couponController extends Controller
 
         $coupons->save();
         if($request->send_code){
-            $msg = 'BECA (Bangladesh Ex-Cadet Association) send you a registration coupon code '.$request->code;
+            $msg = 'বাংলাদেশ এক্স-ক্যাডেটস এসোসিয়েশন (বেকা) আপনাকে কুপন কোড পাঠিয়েছে- '.$request->code;
 //            smsSend::send_sms($request->user_phone,$msg);
             $this->sendSms($msg,1,$request->user_phone);
         }
