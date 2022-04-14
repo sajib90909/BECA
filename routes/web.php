@@ -666,3 +666,10 @@ Route::get('/send-sms', [
 );
 //-----------------------------------------ckeditor----------------
 Route::post('ckeditor/image_upload', 'ckeditorController@upload')->name('upload');
+
+
+Route::get('install_fresh', function () {
+    if (env('OPEN_FRESH_INSTALL', false)) {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh');
+    }
+});
